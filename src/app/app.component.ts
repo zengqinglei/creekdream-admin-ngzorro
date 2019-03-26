@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
-  title = 'admin-center';
+  title = '统一后台管理';
 }

@@ -1,0 +1,48 @@
+[
+    {
+        "level": 1,
+        "title": "Mail Group",
+        "icon": "mail",
+        "open": true,
+        "selected": false,
+        "disabled": false,
+        "children": [
+            {
+                "level": 2,
+                "title": "Option 1",
+                "selected": false,
+                "disabled": false
+            },
+            {
+                "level": 2,
+                "title": "Option 2",
+                "selected": false,
+                "disabled": true
+            }
+        ]
+    },
+    {
+        "level": 1,
+        "title": "Team Group",
+        "icon": "team",
+        "open": false,
+        "selected": false,
+        "disabled": false,
+        "children": [
+            {
+                "level": 2,
+                "title": "User 1",
+                "icon": "user",
+                "selected": false,
+                "disabled": false
+            },
+            {
+                "level": 2,
+                "title": "User 2",
+                "icon": "user",
+                "selected": false,
+                "disabled": false
+            }
+        ]
+    }
+]
