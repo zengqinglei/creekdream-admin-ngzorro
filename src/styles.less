@@ -18,9 +18,7 @@
 @primary-2: color(~`colorPalette('@{primary-color}', 2) `); // replace tint(@primary-color, 80%)
 @primary-3: color(~`colorPalette('@{primary-color}', 3) `); // unused
 @primary-4: color(~`colorPalette('@{primary-color}', 4) `); // unused
-@primary-5: color(
-  ~`colorPalette('@{primary-color}', 5) `
-); // color used to control the text color in many active and hover states, replace tint(@primary-color, 20%)
+@primary-5: color(~`colorPalette('@{primary-color}', 5) `); // color used to control the text color in many active and hover states, replace tint(@primary-color, 20%)
 @primary-6: @primary-color; // color used to control the text color of active buttons, don't use, use @primary-color
 @primary-7: color(~`colorPalette('@{primary-color}', 7) `); // replace shade(@primary-color, 5%)
 @primary-8: color(~`colorPalette('@{primary-color}', 8) `); // unused
@@ -34,9 +32,26 @@
 @body-background : #fff;
 // Base background color for most components
 @component-background : #fff;
-@font-family : "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
-"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-@code-family : "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+@font-family : "Chinese Quote",
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+"PingFang SC",
+"Hiragino Sans GB",
+"Microsoft YaHei",
+"Helvetica Neue",
+Helvetica,
+Arial,
+sans-serif,
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Segoe UI Symbol";
+@code-family : "SFMono-Regular",
+Consolas,
+"Liberation Mono",
+Menlo,
+Courier,
+monospace;
 @heading-color : fade(#000, 85%);
 @text-color : fade(#000, 65%);
 @text-color-secondary : fade(#000, 45%);
@@ -45,7 +60,7 @@
 @text-color-secondary-dark: fade(#fff, 65%);
 @font-variant-base : tabular-nums;
 @font-size-base : 14px;
-@font-size-lg : @font-size-base + 2px;
+@font-size-lg : @font-size-base +2px;
 @font-size-sm : 12px;
 @line-height-base : 1.5;
 @border-radius-base : 4px;
@@ -542,36 +557,36 @@
 
 /* You can add global styles to this file, and also import other style files */
 ::-webkit-scrollbar {
-  width: 0.25em;
-  height: 0.25em;
+    width: 0.25em;
+    height: 0.25em;
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
 }
 
 .text-red,
 .text-error {
-  color: #f04134 !important;
+    color: #f04134 !important;
 }
 
 .text-green,
 .text-success {
-  color: #52c41a !important;
+    color: #52c41a !important;
 }
 
 .text-geekblue,
 .text-primary {
-  color: #2f54eb !important;
+    color: #2f54eb !important;
 }
 
 .text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
