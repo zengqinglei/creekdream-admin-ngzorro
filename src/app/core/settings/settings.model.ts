@@ -1,3 +1,19 @@
+/** 应用信息 */
+export interface App {
+    [key: string]: any;
+    /** 应用名称 */
+    name?: string;
+    /** 描述 */
+    description?: string;
+}
+
+/** 页面布局 */
+export interface Layout {
+    [key: string]: any;
+    /** 是否折叠菜单 */
+    collapsed: boolean;
+}
+
 /** 用户信息 */
 export interface User {
     [key: string]: any;
@@ -12,7 +28,6 @@ export interface User {
 /** 配置更新通知 */
 export interface SettingsNotify {
     type: 'layout' | 'app' | 'user';
-    /** Update `key` name, limited `layout` type */
     name?: string;
     value: any;
 }

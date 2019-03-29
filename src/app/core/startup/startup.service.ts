@@ -17,6 +17,11 @@ export class StartupService {
   load(): Promise<any> {
     return new Promise((resolve, reject) => {
 
+      this.settingService.setApp({
+        name: '后台管理',
+        description: '统一后台管理中心'
+      });
+
       this.settingService.setUser({
         name: 'zengql',
         email: 'zengql@live.cn'
@@ -25,7 +30,6 @@ export class StartupService {
       this.httpClient.get<Menu[]>('./assets/menus.json')
         .subscribe(
           res => {
-            debugger;
             this.menuService.setMenus(res);
           },
           () => { },

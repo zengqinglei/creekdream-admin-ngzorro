@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { LayoutDefaultComponent } from '../layout/default/default.component';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LayoutFullScreenComponent } from '../layout/fullscreen/fullscreen.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutDefaultComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent }
+      { path: '', redirectTo: 'messagecenter', pathMatch: 'full' },
+      { path: 'messagecenter', loadChildren: './messagecenter/messagecenter.module#MessageCenterModule' },
+      { path: 'appversion', loadChildren: './appversion/appversion.module#AppVersionModule' },
+      { path: 'exception', loadChildren: './exception/exception.module#ExceptionModule' }
     ]
-  }
+  },
+  {
+    path: 'fullscreen',
+    component: LayoutFullScreenComponent,
+    children: []
+  },
+  { path: '**', redirectTo: 'exception/404' }
 ];
 
 @NgModule({

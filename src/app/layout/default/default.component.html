@@ -1,60 +1,14 @@
+<div class="page-loading" *ngIf="isFetching"></div>
 <nz-layout class="layout">
-  <nz-header class="main-header">
-    <div class="title" [style.width]="isCollapsed?'79px':'199px'">
-      <img class="log" src="/favicon.ico" />
-      <span *ngIf="!isCollapsed">中安信业</span>
-    </div>
-    <div class="bar">
-      <ul>
-        <li (click)="isCollapsed=!isCollapsed">
-          <i nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'"></i>
-        </li>
-      </ul>
-      <ul style="flex:1">
-      </ul>
-      <ul>
-        <li>
-          <i nz-icon type="setting"></i>
-        </li>
-        <li>
-          <nz-avatar nzIcon="user" nzSize="small" style="background-color:#87d068;"></nz-avatar>
-          <span class="user-title">E201307086629</span>
-        </li>
-      </ul>
-    </div>
+  <nz-header>
+    <layout-header class="main-header"></layout-header>
   </nz-header>
   <nz-layout>
-    <nz-sider class="main-sidebar" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
-      <ul nz-menu class="menu" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
-        <li nz-submenu>
-          <span title><i nz-icon type="user"></i><span class="nav-text">User</span></span>
-          <ul>
-            <li nz-menu-item>Tom</li>
-            <li nz-menu-item>Bill</li>
-            <li nz-menu-item>Alex</li>
-          </ul>
-        </li>
-        <li nz-submenu>
-          <span title><i nz-icon type="team"></i><span class="nav-text">Team</span></span>
-          <ul>
-            <li nz-menu-item>Team 1</li>
-            <li nz-menu-item>Team 2</li>
-          </ul>
-        </li>
-        <li nz-menu-item><span><i nz-icon type="file"></i><span class="nav-text">File</span></span></li>
-      </ul>
+    <nz-sider class="main-sidebar" nzCollapsible [(nzCollapsed)]="settingsService.layout.collapsed" [nzTrigger]="triggerTemplate">
+      <layout-sidebar></layout-sidebar>
     </nz-sider>
-    <nz-layout class="main-body">
-      <div class="page-header">
-        <nz-breadcrumb class="breadcrumb">
-          <nz-breadcrumb-item>Home</nz-breadcrumb-item>
-          <nz-breadcrumb-item>List</nz-breadcrumb-item>
-          <nz-breadcrumb-item>App</nz-breadcrumb-item>
-        </nz-breadcrumb>
-      </div>
-      <nz-content class="page-content">
-        <router-outlet></router-outlet>
-      </nz-content>
-    </nz-layout>
+    <nz-content class="main-body">
+      <router-outlet></router-outlet>
+    </nz-content>
   </nz-layout>
 </nz-layout>

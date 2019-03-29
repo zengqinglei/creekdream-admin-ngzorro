@@ -1,0 +1,20 @@
+<div class="page-header">
+  <nz-breadcrumb class="breadcrumb">
+    <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs">
+      <a *ngIf="breadcrumb.link" [routerLink]="breadcrumb.link">
+        <i nz-icon *ngIf="breadcrumb" [type]="breadcrumb.icon"></i> {{breadcrumb.title}}
+      </a>
+      <span *ngIf="!breadcrumb.link">
+        <i nz-icon *ngIf="breadcrumb" [type]="breadcrumb.icon"></i> {{breadcrumb.title}}
+      </span>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <div class="bar">
+    <nz-select style="width: 200px;margin-right:5px;" nzShowSearch nzAllowClear nzPlaceHolder="Select a person">
+      <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+      <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+      <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+    </nz-select>
+    <button nz-button nzType="primary">新建</button>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+.title {
+    text-align: center;
+    overflow: hidden;
+    transition: width 0.2s;
+    white-space: nowrap;
+}
+
+.title .logo {
+    width: 27px;
+    height: 27px;
+    vertical-align: middle;
+}
+
+.title span {
+    font-size: 20px;
+    margin-left: 10px;
+    color: #fff;
+    vertical-align: sub;
+}
+
+.bar {
+    display: flex;
+    flex: 1;
+}
+
+.bar ul {
+    margin: 0;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.bar ul li {
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 2px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.bar ul li:hover {
+    background-color: rgba(255, 255, 255, .2) !important;
+}
+
+.bar ul li .user-title {
+    font-size: 14px;
+    margin-left: 5px;
+    color: #fff;
+    vertical-align: middle;
+}

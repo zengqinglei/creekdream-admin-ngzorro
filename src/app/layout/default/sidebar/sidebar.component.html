@@ -1,3 +1,24 @@
-<p>
-  sidebar works!
-</p>
+<ul nz-menu [nzMode]="'inline'" [nzInlineCollapsed]="settingsService.layout.collapsed" style="height:100%;">
+  <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menuService.menus }"></ng-container>
+  <ng-template #menuTpl let-menus>
+    <ng-container *ngFor="let menu of menus">
+      <li nz-menu-item [nzPaddingLeft]="menu.level * 24" *ngIf="!menu.children" [(nzDisabled)]="menu.disabled"
+        [(nzSelected)]="menu.selected" (click)="navigateTo(menu)">
+        <span title>
+          <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>
+          <span>{{ menu.title }}</span>
+        </span>
+      </li>
+      <li nz-submenu [nzPaddingLeft]="menu.level * 24" *ngIf="menu.children" [(nzDisabled)]="menu.disabled"
+        [(nzOpen)]="menu.open" (nzOpenChange)="openMenu(menu.id,menus)">
+        <span title>
+          <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>
+          <span>{{ menu.title }}</span>
+        </span>
+        <ul>
+          <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children }"></ng-container>
+        </ul>
+      </li>
+    </ng-container>
+  </ng-template>
+</ul>
