@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<page-header></page-header>\n<p style=\"margin:0;padding:0;height:1000px;background-color:#affd;\">\n  messagecenter dashboard works!\n</p>"
+module.exports = "<page-header></page-header>\r\n<p style=\"margin:0;padding:0;height:1000px;background-color:#affd;\">\r\n  messagecenter dashboard works!\r\n</p>"
 
 /***/ }),
 

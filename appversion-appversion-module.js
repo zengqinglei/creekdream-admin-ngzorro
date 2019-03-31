@@ -92,7 +92,7 @@ var AppVersionModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<page-header></page-header>\n<p style=\"margin:0;padding:0;height:1000px;background-color:#ffcc;\">\n  appversion dashboard works!\n</p>"
+module.exports = "<page-header></page-header>\r\n<p style=\"margin:0;padding:0;height:1000px;background-color:#ffcc;\">\r\n  appversion dashboard works!\r\n</p>"
 
 /***/ }),
 

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nz-empty [nzNotFoundContent]=\"contentTpl\" style=\"margin-top:100px;\">\n  <ng-template #contentTpl>\n    <span> 你要找的页面不存在... </span>\n  </ng-template>\n</nz-empty>"
+module.exports = "<nz-empty [nzNotFoundContent]=\"contentTpl\" style=\"margin-top:100px;\">\r\n  <ng-template #contentTpl>\r\n    <span> 你要找的页面不存在... </span>\r\n  </ng-template>\r\n</nz-empty>"
 
 /***/ }),
 
