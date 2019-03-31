@@ -1,0 +1,60 @@
+[
+    {
+        "id": 1,
+        "title": "消息中心服务",
+        "icon": "bell",
+        "disabled": false,
+        "children": [
+            {
+                "id": 3,
+                "title": "数据统计分析",
+                "url": "/messagecenter/dashboard",
+                "disabled": false
+            },
+            {
+                "id": 4,
+                "title": "短信发送情况",
+                "url": "/messagecenter/smsSend",
+                "disabled": false
+            },
+            {
+                "id": 5,
+                "title": "邮件发送情况",
+                "url": "/messagecenter/emailSend",
+                "disabled": false
+            },
+            {
+                "id": 6,
+                "title": "短信模板配置",
+                "url": "/messagecenter/smsTempalte",
+                "disabled": true
+            },
+            {
+                "id": 7,
+                "title": "服务配置管理",
+                "url": "/messagecenter/settings",
+                "disabled": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "版本管理服务",
+        "icon": "tag",
+        "disabled": false,
+        "children": [
+            {
+                "id": 8,
+                "title": "数据统计分析",
+                "url": "/appversion/dashboard",
+                "disabled": false
+            },
+            {
+                "id": 9,
+                "title": "APP版本管理",
+                "url": "/appversion/version",
+                "disabled": true
+            }
+        ]
+    }
+]
