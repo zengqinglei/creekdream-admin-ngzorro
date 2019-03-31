@@ -2,15 +2,15 @@
   <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menuService.menus }"></ng-container>
   <ng-template #menuTpl let-menus>
     <ng-container *ngFor="let menu of menus">
-      <li nz-menu-item [nzPaddingLeft]="menu.level * 24" *ngIf="!menu.children" [(nzDisabled)]="menu.disabled"
-        [(nzSelected)]="menu.selected" (click)="navigateTo(menu)">
+      <li nz-menu-item [nzPaddingLeft]="menu._level * 24" *ngIf="!menu.children" [(nzDisabled)]="menu.disabled"
+        [(nzSelected)]="menu._selected" (click)="navigateTo(menu)">
         <span title>
           <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>
           <span>{{ menu.title }}</span>
         </span>
       </li>
-      <li nz-submenu [nzPaddingLeft]="menu.level * 24" *ngIf="menu.children" [(nzDisabled)]="menu.disabled"
-        [(nzOpen)]="menu.open" (nzOpenChange)="openMenu(menu.id,menus)">
+      <li nz-submenu [nzPaddingLeft]="menu._level * 24" *ngIf="menu.children" [(nzDisabled)]="menu.disabled"
+        [(nzOpen)]="menu._open" (nzOpenChange)="openMenu(menu.id)">
         <span title>
           <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>
           <span>{{ menu.title }}</span>

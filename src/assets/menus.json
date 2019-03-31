@@ -1,78 +1,58 @@
 [
     {
         "id": 1,
-        "level": 1,
         "title": "消息中心服务",
         "icon": "bell",
-        "open": false,
-        "selected": false,
         "disabled": false,
         "children": [
             {
                 "id": 3,
-                "level": 2,
                 "title": "数据统计分析",
                 "url": "/messagecenter/dashboard",
-                "selected": false,
                 "disabled": false
             },
             {
                 "id": 4,
-                "level": 2,
                 "title": "短信发送情况",
                 "url": "/messagecenter/smsSend",
-                "selected": false,
                 "disabled": false
             },
             {
                 "id": 5,
-                "level": 2,
                 "title": "邮件发送情况",
                 "url": "/messagecenter/emailSend",
-                "selected": false,
                 "disabled": false
             },
             {
                 "id": 6,
-                "level": 2,
                 "title": "短信模板配置",
                 "url": "/messagecenter/smsTempalte",
-                "selected": false,
                 "disabled": true
             },
             {
                 "id": 7,
-                "level": 2,
                 "title": "服务配置管理",
                 "url": "/messagecenter/settings",
-                "selected": false,
                 "disabled": true
             }
         ]
     },
     {
         "id": 2,
-        "level": 1,
         "title": "版本管理服务",
         "icon": "tag",
-        "open": true,
-        "selected": false,
         "disabled": false,
         "children": [
             {
                 "id": 8,
-                "level": 2,
                 "title": "数据统计分析",
                 "url": "/appversion/dashboard",
-                "selected": false,
                 "disabled": false
             },
             {
                 "id": 9,
-                "level": 2,
                 "title": "APP版本管理",
                 "url": "/appversion/version",
-                "selected": false,
                 "disabled": true
             }
         ]

@@ -17,7 +17,29 @@ export class MenuService implements OnDestroy {
   }
 
   setMenus(items: Menu[]) {
+    this.visit(items, (menu, parentMenu, level) => {
+      if (!menu._level) {
+        menu._level = level;
+      }
+      if (!menu._parent) {
+        menu._parent = parentMenu;
+      }
+    });
     this.data = items;
+  }
+
+  visit(data: Menu[], callback: (menu: Menu, parentMenu: Menu, level?: number) => void) {
+    const inFn = (menus: Menu[], parentMenu: Menu, level: number) => {
+      menus.forEach(menu => {
+        if (callback) {
+          callback(menu, parentMenu, level);
+        }
+        if (menu.children) {
+          inFn(menu.children, menu, level + 1);
+        }
+      });
+    };
+    inFn(data, null, 1);
   }
 
   clear() {

@@ -26,32 +26,26 @@ export class PageHeaderComponent implements OnInit {
   }
 
   getBreadcrumbByUrl(url: string) {
+    let findItem: Menu;
     while (url) {
-      if (this.fooSelectedAndOpenMenu(url, this.menuService.menus)) {
+      this.menuService.visit(this.menuService.menus, menu => {
+        if (menu.url && menu.url === url) {
+          findItem = menu;
+        }
+      });
+      if (findItem) {
         break;
       }
       url = url.split('/').slice(0, -1).join('/');
     }
-  }
 
-  fooSelectedAndOpenMenu(url: string, menus: Menu[]): Menu {
-    let findItem: Menu;
-    menus.forEach(menu => {
-      if (menu.url && menu.url === url) {
-        findItem = menu;
-        return true;
-      }
-      if (menu.children && this.fooSelectedAndOpenMenu(url, menu.children)) {
-        findItem = menu;
-      }
-    });
-    if (findItem) {
+    while (findItem) {
       this.breadcrumbs.splice(1, 0, {
         title: findItem.title,
-        link: this.breadcrumbs.length == 1 ? undefined : findItem.url,
+        link: this.breadcrumbs.length === 1 ? undefined : findItem.url,
         icon: findItem.icon
       });
+      findItem = findItem._parent;
     }
-    return findItem;
   }
 }

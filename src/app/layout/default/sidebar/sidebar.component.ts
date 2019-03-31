@@ -2,8 +2,11 @@ import { Component, OnInit, NgZone, Input } from '@angular/core';
 import { SettingsService } from 'src/app/core/settings/settings.service';
 import { MenuService } from 'src/app/core/menu/menu.service';
 import { Menu } from 'src/app/core/menu/menu.model';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { InputBoolean } from 'ng-zorro-antd';
+import { takeUntil, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'layout-sidebar',
@@ -11,6 +14,7 @@ import { InputBoolean } from 'ng-zorro-antd';
 })
 export class SidebarComponent implements OnInit {
   @Input() @InputBoolean() recursivePath = true;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private settingsService: SettingsService,
@@ -20,6 +24,15 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.openedByUrl(this.router.url);
+
+    this.router.events
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        filter(e => e instanceof NavigationEnd),
+      )
+      .subscribe((e: NavigationEnd) => {
+        this.openedByUrl(e.urlAfterRedirects);
+      });
   }
 
   navigateTo(menu: Menu) {
@@ -29,37 +42,43 @@ export class SidebarComponent implements OnInit {
   }
 
   openedByUrl(url: string) {
+    const resetItems: Menu[] = [];
+    let findItem: Menu;
     while (url) {
-      if (this.fooSelectedAndOpenMenu(url, this.menuService.menus)) {
+      this.menuService.visit(this.menuService.menus, menu => {
+        if (menu._selected || menu._open) {
+          resetItems.push(menu);
+        }
+        if (menu.url && menu.url === url) {
+          findItem = menu;
+        }
+      });
+      if (findItem) {
         break;
       }
       url = url.split('/').slice(0, -1).join('/');
     }
-  }
 
-  fooSelectedAndOpenMenu(url: string, menus: Menu[]): Menu {
-    let findItem: Menu;
-    menus.forEach(menu => {
-      if (menu.url && menu.url === url) {
-        menu.selected = true;
-        findItem = menu;
-        return true;
-      }
-      if (menu.children) {
-        findItem = this.fooSelectedAndOpenMenu(url, menu.children);
-        if (findItem && !menu.open) {
-          menu.open = true;
-          this.openMenu(menu.id, menus);
-        }
-      }
+    if (!findItem) {
+      return;
+    }
+
+    resetItems.forEach(resetItem => {
+      resetItem._selected = false;
+      resetItem._open = false;
     });
-    return findItem;
+
+    while (findItem) {
+      findItem._selected = true;
+      findItem._open = true;
+      findItem = findItem._parent;
+    }
   }
 
-  openMenu(id: string, menus: Menu[]): void {
-    menus.forEach(menu => {
-      if (menu.id != id) {
-        menu.open = false;
+  openMenu(id: string): void {
+    this.menuService.visit(this.menuService.menus, menu => {
+      if (menu._open && menu.id !== id) {
+        menu._open = false;
       }
     });
   }

@@ -33,7 +33,7 @@ export class StartupService {
             this.menuService.setMenus(res);
           },
           () => { },
-          () => { resolve(null) });
+          () => { resolve(null); });
     });
   }
 }
