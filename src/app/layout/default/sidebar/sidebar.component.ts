@@ -17,8 +17,8 @@ export class SidebarComponent implements OnInit {
   private unsubscribe$ = new Subject<void>();
 
   constructor(
-    private settingsService: SettingsService,
-    private menuService: MenuService,
+    public settingsService: SettingsService,
+    public menuService: MenuService,
     private ngZone: NgZone,
     private router: Router) { }
 

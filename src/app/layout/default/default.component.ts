@@ -24,7 +24,7 @@ export class LayoutDefaultComponent implements OnInit, OnDestroy {
 
   constructor(
     router: Router,
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     notification: NzNotificationService) {
     router.events.pipe(takeUntil(this.unsubscribe$)).subscribe(evt => {
       if (!this.isFetching && evt instanceof RouteConfigLoadStart) {

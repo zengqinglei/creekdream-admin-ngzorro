@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   isFullscreen: boolean;
 
   constructor(
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     private modalService: NzModalService) {
 
   }
