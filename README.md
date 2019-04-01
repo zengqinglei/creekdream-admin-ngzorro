@@ -1,7 +1,6 @@
-# Creekdream.NG-ZORRO
+# Creekdream.Admin.Ngzorro
 
-项目是基于ng-zorro开发的后台管理控制台项目！
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
+基于ng-zorro开发的后台管理控制台项目！
 
 ## 快速启动
 
@@ -111,16 +110,16 @@ npm start           # 启动项目完成后，浏览器导航至：http://localh
 
 要获得Angular CLI的更多帮助，请使用 `ng help` 或查看 [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md) 。
 
-## 常见错误及解决方案
+## 环境配置常见错误及解决方案
 
-### 1. 发生错误：gyp ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable.
+##### 1. 发生错误：gyp ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable.
 
 > 需要安装 [python 2.x](https://www.python.org/downloads/) 版本
 
-### 2. 发的工具生错误：MSBUILD : error MSB4132: 无法识别工具版本“2.0”。可用版本为 “4.0”
+##### 2. 发的工具生错误：MSBUILD : error MSB4132: 无法识别工具版本“2.0”。可用版本为 “4.0”
 
 > 打开【控制面板】——【程序】——【启用或关闭windows功能】—— 勾选低版本的 .net
 
-### 3. MSBUILD : error MSB3428: 未能加载 Visual C++ 组件"VCBuild.exe"
+##### 3. MSBUILD : error MSB3428: 未能加载 Visual C++ 组件"VCBuild.exe"
 
 > 需要通过命令行安装：`npm install -g windows-build-tools`
