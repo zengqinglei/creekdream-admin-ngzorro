@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { LayoutDefaultComponent } from '../layout/default/default.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutFullScreenComponent } from '../layout/fullscreen/fullscreen.component';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: environment.useHash })],
   exports: [RouterModule]
 })
 export class PagesRoutingModule { }
