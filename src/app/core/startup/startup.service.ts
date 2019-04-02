@@ -8,7 +8,7 @@ import { Menu } from '../menu/menu.model';
 export class StartupService {
   constructor(
     private menuService: MenuService,
-    private settingService: SettingsService,
+    private settingsService: SettingsService,
     private httpClient: HttpClient
   ) {
 
@@ -17,12 +17,12 @@ export class StartupService {
   load(): Promise<any> {
     return new Promise((resolve, reject) => {
 
-      this.settingService.setApp({
+      this.settingsService.setApp({
         name: '后台管理',
         description: '统一后台管理中心'
       });
 
-      this.settingService.setUser({
+      this.settingsService.setUser({
         name: 'zengql',
         email: 'zengql@live.cn'
       });
