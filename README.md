@@ -41,7 +41,7 @@ npm start           # 启动项目完成后，浏览器导航至：http://localh
 
 #### 方式一
 
-配置 `SASS_BINARY_SITE` 的地址，运行命令：`npm config SASS_BINARY_SITE https://npm.taobao.org/mirrors/node-sass`
+配置 `SASS_BINARY_SITE` 的地址，运行命令：`npm config set SASS_BINARY_SITE https://npm.taobao.org/mirrors/node-sass`
 
 #### 方式二
 
