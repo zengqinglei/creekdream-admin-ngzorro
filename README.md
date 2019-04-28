@@ -1,6 +1,6 @@
 # Creekdream.Admin.Ngzorro
 
-基于ng-zorro开发的后台管理控制台项目！
+基于angular、ng-zorro开发的后台管理控制台项目！
 
 ## 快速启动
 
@@ -10,17 +10,18 @@ npm install         # 还原包文件
 npm start           # 启动项目完成后，浏览器导航至：http://localhost:4200 
 ```
 
-> 开发工具推荐：VS Code  
+> 开发工具推荐：[VS Code](https://code.visualstudio.com)  
 > 推荐安装插件：[NG-ZORRO](https://marketplace.visualstudio.com/items?itemName=cipchk.ng-zorro-vscode)、
 [Beautify css/sass/scss/less](https://marketplace.visualstudio.com/items?itemName=michelemelluso.code-beautifier)、
 [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)、
-[TSLint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint)、
+[TSLint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin)、
 [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 
 ## 链接
 
 * [Demo](https://zengqinglei.github.io/creekdream-admin-ngzorro/)
-* [Document](https://ng.ant.design/docs/introduce/zh)
+* [Angular Document](https://zengqinglei.github.io/creekdream-admin-ngzorro/)
+* [NG-ZORRO Document](https://www.angular.cn/guide/quickstart)
 
 ## 环境准备
 
