@@ -4,7 +4,12 @@
     <layout-header class="main-header"></layout-header>
   </nz-header>
   <nz-layout>
-    <nz-sider class="main-sidebar" nzCollapsible [(nzCollapsed)]="settingsService.layout.collapsed" [nzTrigger]="triggerTemplate">
+    <nz-sider
+      class="main-sidebar"
+      nzCollapsible
+      [(nzCollapsed)]="layout.collapsed"
+      [nzTrigger]="triggerTemplate"
+    >
       <layout-sidebar></layout-sidebar>
     </nz-sider>
     <nz-content class="main-body">

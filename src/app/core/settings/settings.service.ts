@@ -1,82 +1,53 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { SettingsNotify, User, Layout, App } from './settings.model';
+import { AppInfo } from './models/app-info';
+import { LayoutInfo } from './models/layout-info';
 
-export const APP = 'app';
-export const LAYOUT = 'layout';
-export const USER = 'user';
+const APP = 'app';
+const LAYOUT = 'layout';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
-  private notify$ = new Subject<SettingsNotify>();
-  private _app: App = null;
-  private _user: User = null;
-  private _layout: Layout = null;
+  private app: AppInfo;
+  private layout: LayoutInfo;
+
+  constructor() {
+    this.app = {
+      name: 'admin',
+      description: 'admin base on angular, ng-zorro'
+    };
+    this.layout = { collapsed: false };
+  }
 
   private get(key: string) {
-    return JSON.parse(localStorage.getItem(key) || 'null') || null;
+    const value = localStorage.getItem(key);
+    if (value) {
+      return JSON.parse(value);
+    }
   }
 
   private set(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  get app(): App {
-    if (!this._app) {
-      this._app = {
-        year: new Date().getFullYear(),
-        ...this.get(APP),
-      };
-      this.set(APP, this._app);
-    }
-    return this._app;
+  getLayout() {
+    return this.layout;
   }
 
-  get layout(): Layout {
-    if (!this._layout) {
-      this._layout = {
-        collapsed: false,
-        ...this.get(LAYOUT),
-      };
-      this.set(LAYOUT, this._layout);
-    }
-    return this._layout;
-  }
-
-  get user(): User {
-    if (!this._user) {
-      this._user = { ...this.get(USER) };
-      this.set(USER, this._user);
-    }
-    return this._user;
-  }
-
-  get notify(): Observable<SettingsNotify> {
-    return this.notify$.asObservable();
-  }
-
-  setLayout(name: string | Layout, value?: any): boolean {
+  setLayout(name: string | LayoutInfo, value?: any) {
     if (typeof name === 'string') {
       this.layout[name] = value;
     } else {
-      this._layout = name;
+      this.layout = name;
     }
-    this.set(LAYOUT, this._layout);
-    this.notify$.next({ type: 'layout', name, value } as any);
-    return true;
+    this.set(LAYOUT, this.layout);
   }
 
-  setApp(value: App) {
-    this._app = value;
+  getApp() {
+    return this.app;
+  }
+
+  setApp(value: AppInfo) {
+    this.app = value;
     this.set(APP, value);
-    this.notify$.next({ type: 'app', value });
-    return true;
-  }
-
-  setUser(value: User) {
-    this._user = value;
-    this.set(USER, value);
-    this.notify$.next({ type: 'user', value });
-    return true;
   }
 }

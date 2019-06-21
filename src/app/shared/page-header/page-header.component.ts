@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Breadcrumb } from './page-header.model';
-import { MenuService } from 'src/app/core/menu/menu.service';
-import { Menu } from 'src/app/core/menu/menu.model';
+import { MenuService } from 'src/app/services/core/menu/menu.service';
+import { MenuInfo } from 'src/app/services/core/menu/models/menu-info';
 
 @Component({
   selector: 'page-header',
@@ -10,25 +10,27 @@ import { Menu } from 'src/app/core/menu/menu.model';
   styleUrls: ['./page-header.component.less']
 })
 export class PageHeaderComponent implements OnInit {
-  breadcrumbs: Breadcrumb[] = [{
-    title: '首页',
-    link: '/',
-    icon: 'home'
-  }];
+  menus: MenuInfo[];
+  breadcrumbs: Breadcrumb[] = [
+    {
+      title: '首页',
+      link: '/',
+      icon: 'home'
+    }
+  ];
 
-  constructor(
-    private menuService: MenuService,
-    private router: Router
-  ) { }
+  constructor(private menuService: MenuService, private router: Router) {
+    this.menus = menuService.getMenus();
+  }
 
   ngOnInit() {
     this.getBreadcrumbByUrl(this.router.url);
   }
 
   getBreadcrumbByUrl(url: string) {
-    let findItem: Menu;
+    let findItem: MenuInfo;
     while (url) {
-      this.menuService.visit(this.menuService.menus, menu => {
+      this.menuService.visit(this.menus, menu => {
         if (menu.url && menu.url === url) {
           findItem = menu;
         }
@@ -36,7 +38,10 @@ export class PageHeaderComponent implements OnInit {
       if (findItem) {
         break;
       }
-      url = url.split('/').slice(0, -1).join('/');
+      url = url
+        .split('/')
+        .slice(0, -1)
+        .join('/');
     }
 
     while (findItem) {

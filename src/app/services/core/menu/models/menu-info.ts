@@ -1,5 +1,5 @@
 /** 菜单信息 */
-export interface Menu {
+export interface MenuInfo {
     [key: string]: any;
     /** 唯一key */
     id: string;
@@ -10,5 +10,5 @@ export interface Menu {
     /** 是否禁用 */
     disabled?: boolean;
     /** 子菜单 */
-    children?: Menu[];
+    children?: MenuInfo[];
 }

@@ -1,26 +1,30 @@
-import { Component, OnInit, NgZone, Input } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { SettingsService } from 'src/app/core/settings/settings.service';
-import { MenuService } from 'src/app/core/menu/menu.service';
-import { Menu } from 'src/app/core/menu/menu.model';
 import { Router, NavigationEnd } from '@angular/router';
-import { InputBoolean } from 'ng-zorro-antd';
 import { takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { isNullOrUndefined } from 'util';
+import { MenuService } from 'src/app/services/core/menu/menu.service';
+import { MenuInfo } from 'src/app/services/core/menu/models/menu-info';
+import { LayoutInfo } from 'src/app/core/settings/models/layout-info';
 
 @Component({
   selector: 'layout-sidebar',
   templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements OnInit {
-  @Input() @InputBoolean() recursivePath = true;
+  menus: MenuInfo[];
+  layout: LayoutInfo;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
-    public settingsService: SettingsService,
-    public menuService: MenuService,
+    settingsService: SettingsService,
+    private menuService: MenuService,
     private ngZone: NgZone,
-    private router: Router) { }
+    private router: Router
+  ) {
+    this.menus = menuService.getMenus();
+    this.layout = settingsService.getLayout();
+  }
 
   ngOnInit() {
     this.openedByUrl(this.router.url);
@@ -28,24 +32,24 @@ export class SidebarComponent implements OnInit {
     this.router.events
       .pipe(
         takeUntil(this.unsubscribe$),
-        filter(e => e instanceof NavigationEnd),
+        filter(e => e instanceof NavigationEnd)
       )
       .subscribe((e: NavigationEnd) => {
         this.openedByUrl(e.urlAfterRedirects);
       });
   }
 
-  navigateTo(menu: Menu) {
+  navigateTo(menu: MenuInfo) {
     if (!menu.disabled && menu.url) {
       this.ngZone.run(() => this.router.navigateByUrl(menu.url));
     }
   }
 
   openedByUrl(url: string) {
-    const resetItems: Menu[] = [];
-    let findItem: Menu;
+    const resetItems: MenuInfo[] = [];
+    let findItem: MenuInfo;
     while (url) {
-      this.menuService.visit(this.menuService.menus, menu => {
+      this.menuService.visit(this.menus, menu => {
         if (menu._selected || menu._open) {
           resetItems.push(menu);
         }
@@ -56,27 +60,31 @@ export class SidebarComponent implements OnInit {
       if (findItem) {
         break;
       }
-      url = url.split('/').slice(0, -1).join('/');
+      url = url
+        .split('/')
+        .slice(0, -1)
+        .join('/');
     }
 
-    if (!findItem) {
-      return;
-    }
+    if (findItem) {
+      resetItems.forEach(resetItem => {
+        resetItem._selected = false;
+        resetItem._open = false;
+      });
 
-    resetItems.forEach(resetItem => {
-      resetItem._selected = false;
-      resetItem._open = false;
-    });
-
-    while (findItem) {
-      findItem._selected = true;
-      findItem._open = true;
-      findItem = findItem._parent;
+      while (findItem) {
+        if (findItem.children && !this.layout.collapsed) {
+          findItem._open = true;
+        } else {
+          findItem._selected = true;
+        }
+        findItem = findItem._parent;
+      }
     }
   }
 
-  openMenu(id: string): void {
-    this.menuService.visit(this.menuService.menus, menu => {
+  openMenu(id: string) {
+    this.menuService.visit(this.menus, menu => {
       if (menu._open && menu.id !== id) {
         menu._open = false;
       }

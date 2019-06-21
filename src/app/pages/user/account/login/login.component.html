@@ -1,0 +1,73 @@
+<div class="login-header">
+  <div>
+    <img class="logo" alt="统一中后台" src="assets/images/logo.svg" />
+    <span class="title">统一中后台</span>
+  </div>
+  <p class="description">
+    统一中后台管理系统,用于快速构建后台管理系统基础项目
+  </p>
+</div>
+<form
+  nz-form
+  [formGroup]="loginForm"
+  class="login-section"
+  (ngSubmit)="handleSubmit()"
+>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixUser">
+        <input
+          type="text"
+          nz-input
+          formControlName="userName"
+          placeholder="用户名：any"
+        />
+      </nz-input-group>
+      <nz-form-explain
+        *ngIf="
+          loginForm.get('userName')?.dirty && loginForm.get('userName')?.errors
+        "
+        >请填写登录用户名!</nz-form-explain
+      >
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixLock">
+        <input
+          type="password"
+          nz-input
+          formControlName="password"
+          placeholder="密   码：any"
+        />
+      </nz-input-group>
+      <nz-form-explain
+        *ngIf="
+          loginForm.get('password')?.dirty && loginForm.get('password')?.errors
+        "
+        >请填写登录密码!</nz-form-explain
+      >
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <label nz-checkbox formControlName="remember">
+        <span>自动登录</span>
+      </label>
+      <a class="forgot" href="/user/forgot">
+        忘记密码 ？
+      </a>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button class="login" [nzType]="'primary'">
+        登 录
+      </button>
+      或者
+      <a href="/user/register">立即注册！</a>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+<ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>

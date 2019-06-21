@@ -1,12 +1,11 @@
-<div class="title" [style.width]="settingsService.layout.collapsed?'79px':'199px'">
-  <img class="log" width="32" height="32"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
-  <span *ngIf="!settingsService.layout.collapsed">{{settingsService.app.name}}</span>
+<div class="title" [style.width]="layout.collapsed ? '79px' : '199px'">
+  <img class="logo" src="assets/images/logo.svg" />
+  <span *ngIf="!layout.collapsed">{{ app.name }}</span>
 </div>
 <div class="bar">
   <ul>
     <li (click)="toggleCollapsedSidebar()">
-      <i nz-icon [type]="settingsService.layout.collapsed?'menu-unfold':'menu-fold'"></i>
+      <i nz-icon [type]="layout.collapsed ? 'menu-unfold' : 'menu-fold'"></i>
     </li>
   </ul>
   <ul style="flex:1"></ul>
@@ -16,29 +15,37 @@
         <i nz-icon type="setting"></i>
       </li>
       <ul nz-menu>
-        <li nz-menu-item *ngIf="isSuppourtFullscreen" (click)="toggleFullscreen()">
-          <i nz-icon type="{{isFullscreen?'fullscreen-exit':'fullscreen'}}"></i> {{isFullscreen?'退出全屏':'全屏'}}
+        <li
+          nz-menu-item
+          *ngIf="isSuppourtFullscreen"
+          (click)="toggleFullscreen()"
+        >
+          <i
+            nz-icon
+            type="{{ isFullscreen ? 'fullscreen-exit' : 'fullscreen' }}"
+          ></i>
+          {{ isFullscreen ? '退出全屏' : '全屏' }}
         </li>
         <li nz-menu-item (click)="clearLocalStorage()">
           <i nz-icon type="delete"></i> 清理本地缓存
         </li>
       </ul>
     </nz-dropdown>
-    <nz-dropdown [nzPlacement]="'bottomRight'">
+    <nz-dropdown [nzPlacement]="'bottomRight'" *ngIf="!!user">
       <li nz-dropdown>
-        <nz-avatar nzIcon="user" nzSize="small" style="background-color:#87d068;"></nz-avatar>
-        <span class="user-title">{{settingsService.user.name}}</span>
+        <nz-avatar
+          nzIcon="user"
+          nzSize="small"
+          style="background-color:#87d068;"
+        ></nz-avatar>
+        <span class="user-title">{{ user.userName }}</span>
       </li>
       <ul nz-menu>
+        <li nz-menu-item nzDisabled><strong>姓名：</strong>{{ user.name }}</li>
         <li nz-menu-item nzDisabled>
-          <strong>姓名：</strong>{{settingsService.user.name}}
+          <strong>角色：</strong>{{ user.roleName }}
         </li>
-        <li nz-menu-item nzDisabled>
-          <strong>角色：</strong>{{settingsService.user.avatar}}
-        </li>
-        <li nz-menu-item nzDisabled>
-          <strong>邮箱：</strong>{{settingsService.user.email}}
-        </li>
+        <li nz-menu-item nzDisabled><strong>邮箱：</strong>{{ user.email }}</li>
         <li nz-menu-divider></li>
         <li nz-menu-item (click)="logout()">注销</li>
       </ul>

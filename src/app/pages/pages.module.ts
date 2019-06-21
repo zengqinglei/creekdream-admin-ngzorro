@@ -3,9 +3,6 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [
-    SharedModule,
-    PagesRoutingModule
-  ]
+  imports: [SharedModule, PagesRoutingModule]
 })
-export class PagesModule { }
+export class PagesModule {}

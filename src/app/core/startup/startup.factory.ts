@@ -1,5 +1,5 @@
 import { StartupService } from './startup.service';
 
-export function StartupServiceFactory(startupService: StartupService): Function {
+export function StartupServiceFactory(startupService: StartupService) {
     return () => startupService.load();
 }
