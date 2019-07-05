@@ -20,8 +20,8 @@ npm start           # 启动项目完成后，浏览器导航至：http://localh
 ## 链接
 
 - [Demo](https://zengqinglei.github.io/creekdream-admin-ngzorro/)
-- [Angular Document](https://zengqinglei.github.io/creekdream-admin-ngzorro/)
-- [NG-ZORRO Document](https://www.angular.cn/guide/quickstart)
+- [Angular Document](https://www.angular.cn/guide/quickstart)
+- [NG-ZORRO Document](https://ng.ant.design/docs/introduce/zh)
 
 ## 环境准备
 
