@@ -29,7 +29,7 @@ export class LayoutDefaultComponent implements OnInit, OnDestroy {
   isFetching = false;
   layout: LayoutInfo;
 
-  @ViewChild('trigger') customTrigger: TemplateRef<void>;
+  @ViewChild('trigger', { static: true }) customTrigger: TemplateRef<void>;
 
   /** custom trigger can be TemplateRef */
   changeTrigger(): void {
@@ -40,7 +40,7 @@ export class LayoutDefaultComponent implements OnInit, OnDestroy {
     private router: Router,
     private settingsService: SettingsService,
     private notification: NzNotificationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.layout = this.settingsService.getLayout();
