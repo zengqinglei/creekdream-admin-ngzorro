@@ -10,36 +10,25 @@
   </ul>
   <ul style="flex:1"></ul>
   <ul>
-    <nz-dropdown [nzPlacement]="'bottomRight'">
-      <li nz-dropdown>
-        <i nz-icon type="setting"></i>
-      </li>
+    <li nz-dropdown [nzDropdownMenu]="settingMenu">
+      <i nz-icon type="setting"></i>
+    </li>
+    <nz-dropdown-menu #settingMenu="nzDropdownMenu">
       <ul nz-menu>
-        <li
-          nz-menu-item
-          *ngIf="isSuppourtFullscreen"
-          (click)="toggleFullscreen()"
-        >
-          <i
-            nz-icon
-            type="{{ isFullscreen ? 'fullscreen-exit' : 'fullscreen' }}"
-          ></i>
+        <li nz-menu-item *ngIf="isSuppourtFullscreen" (click)="toggleFullscreen()">
+          <i nz-icon type="{{ isFullscreen ? 'fullscreen-exit' : 'fullscreen' }}"></i>
           {{ isFullscreen ? '退出全屏' : '全屏' }}
         </li>
         <li nz-menu-item (click)="clearLocalStorage()">
           <i nz-icon type="delete"></i> 清理本地缓存
         </li>
       </ul>
-    </nz-dropdown>
-    <nz-dropdown [nzPlacement]="'bottomRight'" *ngIf="!!user">
-      <li nz-dropdown>
-        <nz-avatar
-          nzIcon="user"
-          nzSize="small"
-          style="background-color:#87d068;"
-        ></nz-avatar>
-        <span class="user-title">{{ user.userName }}</span>
-      </li>
+    </nz-dropdown-menu>
+    <li nz-dropdown [nzDropdownMenu]="userMenu" *ngIf="!!user">
+      <nz-avatar nzIcon="user" nzSize="small" style="background-color:#87d068;"></nz-avatar>
+      <span class="user-title">{{ user.userName }}</span>
+    </li>
+    <nz-dropdown-menu #userMenu="nzDropdownMenu">
       <ul nz-menu>
         <li nz-menu-item nzDisabled><strong>姓名：</strong>{{ user.name }}</li>
         <li nz-menu-item nzDisabled>
@@ -49,6 +38,6 @@
         <li nz-menu-divider></li>
         <li nz-menu-item (click)="logout()">注销</li>
       </ul>
-    </nz-dropdown>
+    </nz-dropdown-menu>
   </ul>
 </div>
