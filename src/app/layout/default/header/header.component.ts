@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isSuppourtFullscreen: boolean = screenfull && screenfull.enabled;
+  isSuppourtFullscreen: boolean = screenfull.isEnabled;
   isFullscreen: boolean;
   layout: LayoutInfo;
   app: AppInfo;
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   _resize() {
-    if (screenfull && screenfull.enabled) {
+    if (screenfull.isEnabled) {
       this.isFullscreen = screenfull.isFullscreen;
     }
   }
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleFullscreen() {
-    if (screenfull && screenfull.enabled) {
+    if (screenfull.isEnabled) {
       screenfull.toggle();
     }
   }

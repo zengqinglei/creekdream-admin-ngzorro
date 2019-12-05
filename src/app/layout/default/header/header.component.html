@@ -5,22 +5,22 @@
 <div class="bar">
   <ul>
     <li (click)="toggleCollapsedSidebar()">
-      <i nz-icon [type]="layout.collapsed ? 'menu-unfold' : 'menu-fold'"></i>
+      <i nz-icon nzType="{{layout.collapsed ? 'menu-unfold' : 'menu-fold'}}"></i>
     </li>
   </ul>
   <ul style="flex:1"></ul>
   <ul>
     <li nz-dropdown [nzDropdownMenu]="settingMenu">
-      <i nz-icon type="setting"></i>
+      <i nz-icon nzType="setting"></i>
     </li>
     <nz-dropdown-menu #settingMenu="nzDropdownMenu">
       <ul nz-menu>
         <li nz-menu-item *ngIf="isSuppourtFullscreen" (click)="toggleFullscreen()">
-          <i nz-icon type="{{ isFullscreen ? 'fullscreen-exit' : 'fullscreen' }}"></i>
+          <i nz-icon nzType="{{ isFullscreen ? 'fullscreen-exit' : 'fullscreen' }}"></i>
           {{ isFullscreen ? '退出全屏' : '全屏' }}
         </li>
         <li nz-menu-item (click)="clearLocalStorage()">
-          <i nz-icon type="delete"></i> 清理本地缓存
+          <i nz-icon nzType="delete"></i> 清理本地缓存
         </li>
       </ul>
     </nz-dropdown-menu>

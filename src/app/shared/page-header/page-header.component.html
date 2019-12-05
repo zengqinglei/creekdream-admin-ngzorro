@@ -2,10 +2,10 @@
   <nz-breadcrumb class="breadcrumb">
     <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs">
       <a *ngIf="breadcrumb.link" [routerLink]="breadcrumb.link">
-        <i nz-icon *ngIf="breadcrumb" [type]="breadcrumb.icon"></i> {{breadcrumb.title}}
+        <i nz-icon *ngIf="breadcrumb" nzType="{{breadcrumb.icon}}"></i> {{breadcrumb.title}}
       </a>
       <span *ngIf="!breadcrumb.link">
-        <i nz-icon *ngIf="breadcrumb" [type]="breadcrumb.icon"></i> {{breadcrumb.title}}
+        <i nz-icon *ngIf="breadcrumb" nzType="{{breadcrumb.icon}}"></i> {{breadcrumb.title}}
       </span>
     </nz-breadcrumb-item>
   </nz-breadcrumb>

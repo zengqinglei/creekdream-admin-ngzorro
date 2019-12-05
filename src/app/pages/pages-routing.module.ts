@@ -18,15 +18,15 @@ const routes: Routes = [
       },
       {
         path: 'messagecenter',
-        loadChildren: './messagecenter/messagecenter.module#MessageCenterModule'
+        loadChildren: () => import('./messagecenter/messagecenter.module').then(m => m.MessageCenterModule)
       },
       {
         path: 'appversion',
-        loadChildren: './appversion/appversion.module#AppVersionModule'
+        loadChildren: () => import('./appversion/appversion.module').then(m => m.AppVersionModule)
       },
       {
         path: 'exception',
-        loadChildren: './exception/exception.module#ExceptionModule'
+        loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule)
       }
     ]
   },
@@ -46,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: environment.useHash })],
   exports: [RouterModule]
 })
-export class PagesRoutingModule {}
+export class PagesRoutingModule { }
